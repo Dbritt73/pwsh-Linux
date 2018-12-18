@@ -2,20 +2,22 @@
 Function Join-LinuxtoAD {
   <#
     .SYNOPSIS
-    Describe purpose of "Join-LinuxtoAD" in 1-2 sentences.
+    Join a Linux based computer to an Active Directory environment
 
     .DESCRIPTION
-    Add a more complete description of what the function does.
+    Join-LinuxtoAD utilizes PowerBroker Identity Services Open to bind the machine to Active Directory for authentication.
+    Ensures that the dependent packages are available and install prior to attempting the join to AD.
 
     .PARAMETER DomainName
-    Describe parameter -DomainName.
+    The name of your Active Directory Domain - example contoso.com
 
     .PARAMETER Username
-    Describe parameter -Username.
+    User name of account that has permissions to add computers objects to Active Directory
 
     .EXAMPLE
-    Join-LinuxtoAD -DomainName Value -Username Value
-    Describe what this call does
+    Join-LinuxtoAD -DomainName your.domain.name -Username User1@your.domain.name
+
+    creates a computer object with the current host name in the your.domain.name domain using the provided username and password
 
     .NOTES
     Place additional notes here.
@@ -23,6 +25,8 @@ Function Join-LinuxtoAD {
     .LINK
     URLs to related sites
     https://winsysblog.com/2018/01/join-linux-active-directory-powershell-core.html
+    https://github.com/BeyondTrust/pbis-open
+    https://github.com/BeyondTrust/pbis-open/wiki/Documentation
   #>
 
 
@@ -74,7 +78,7 @@ Function Join-LinuxtoAD {
 
             if ($lastexitcode -eq 0) {
 
-                Write-Output -InputObject "Success - Joined to $DomainNamme"
+                Write-Output -InputObject "Success - Joined to $DomainName"
 
             } else {
 
