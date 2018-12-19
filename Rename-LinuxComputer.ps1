@@ -19,11 +19,11 @@ Function Rename-LinuxComputer {
 
             $Hosts = Get-Content /etc/hosts -Raw
 
-            $Hosts -replace $Hostname, $NewName | Set-content $Hosts
+            $Hosts -replace $Hostname, $NewName | Set-content /etc/hosts
 
             $Hosts = Get-Content /etc/hostname -Raw
 
-            $Hosts -replace $Hostname, $NewName | Set-Content $Hosts
+            $Hosts -replace $Hostname, $NewName | Set-Content /etc/hostname
 
         }
 
