@@ -13,15 +13,20 @@ Function Rename-LinuxComputer {
 
     Process {
 
-        $Hostname = & hostname
+        if ($isLinux) {
 
-        $Hosts = (Get-Content /etc/hosts)
+            $Hostname = & hostname
 
-        $Hosts -replace $Hostname, $NewName
+            $Hosts = (Get-Content /etc/hosts)
 
-        $Hosts = (Get-Content /etc/hostname)
+            $Hosts -replace $Hostname, $NewName | Set-content $Hosts
 
-        $Hosts -replace $Hostname, $NewName
+            $Hosts = (Get-Content /etc/hostname)
+
+            $Hosts -replace $Hostname, $NewName | Set-Content $Hosts
+
+        }
+
 
     }
 
